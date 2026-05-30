@@ -1,8 +1,8 @@
 # Данные
 
-Набор данных -> (Titanic)[https://www.kaggle.com/datasets/yasserh/titanic-dataset]
+Набор данных -> [Titanic](https://www.kaggle.com/datasets/yasserh/titanic-dataset)
 
-Итоговая папка (Google Drive)[https://drive.google.com/drive/folders/1tzoiwV-SyZ3Avtpu68fQWoe0IUjUQxQo]
+Итоговая папка [Google Drive](https://drive.google.com/drive/folders/1tzoiwV-SyZ3Avtpu68fQWoe0IUjUQxQo)
 
 Данные храняться в папке "data". С помощью DVC отслеживаются: "data", с помощью git отслеживаются "data.dv" и ".gitignore"
 
@@ -35,9 +35,9 @@ dvc remote modify myremote gdrive_client_id 'client-id'
 dvc remote modify myremote gdrive_client_secret 'client-secret'
 ```
 
-!(init)[img/1.png]
+![init](./img/1.png)
 
-!(conf storage)[img/2.png]
+![conf storage](./img/2.png)
 
 ## Этап 2
 
@@ -73,7 +73,7 @@ git commit -m "OneHotEncoding"
 git log --oneline
 ```
 
-!(commits)[img/3.png]
+![commits](./img/3.png)
 
 Структура Google Drive
-!(google drives)[img/4.png]
+![google drives](./img/3.png)
