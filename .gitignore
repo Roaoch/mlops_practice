@@ -3,3 +3,7 @@ target
 *.iml
 **/*.iml
 **/.env
+
+.venv
+
+lab4/.dvc

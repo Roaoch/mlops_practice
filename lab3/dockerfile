@@ -1,0 +1,40 @@
+FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim AS builder
+
+RUN apt update -y && apt install patchelf build-essential clang --no-install-recommends -y
+
+WORKDIR /app
+
+ENV UV_NO_DEV=1
+
+COPY pyproject.toml .
+
+RUN uv venv
+RUN uv sync --no-dev
+
+COPY app.py .
+
+RUN uv add nuitka
+
+RUN uv run nuitka app.py \
+    --onefile \
+    --clang \
+    --output-dir=dist \
+    --follow-imports \
+    --include-package=sklearn \
+    --include-package-data=groovy,safehttpx,gradio,dateutil \
+    --nofollow-import-to=pytest \
+    --python-flag=nosite,-O \
+    --plugin-enable=anti-bloat,implicit-imports,data-files,pylint-warnings
+
+FROM ubuntu:jammy
+
+WORKDIR /run
+
+ENV PORT=80
+
+COPY --from=builder /app/dist/app.bin .
+RUN chmod +x /run/app.bin
+
+EXPOSE 80
+
+ENTRYPOINT ["/run/app.bin"]
