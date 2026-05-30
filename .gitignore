@@ -7,3 +7,6 @@ target
 .venv
 
 lab4/.dvc
+lab5/*txt
+lab5/*pkl
+lab5/*.py
